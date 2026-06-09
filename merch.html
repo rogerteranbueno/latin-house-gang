@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merch — Latin House Gang</title>
+  <title>Apparel — Latin House Gang</title>
   <meta name="description" content="LHG Apparel — Drops limitados. No es merch. Es ropa que usas de día a día.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <!-- NAVBAR dark -->
+  <nav class="navbar navbar--dark" id="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="nav-logo">
-        <img src="LHG_Logo_Negro_Banner.png" alt="Latin House Gang" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img src="LHG_Logo_Blanco_Banner.png" alt="Latin House Gang" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span class="nav-logo-text" style="display:none">LATIN HOUSE GANG</span>
       </a>
       <ul class="nav-links">
         <li><a href="index.html">RELEASES</a></li>
         <li><a href="eventos.html">EVENTOS</a></li>
         <li><a href="blog.html">BLOG</a></li>
-        <li><a href="merch.html">MERCH</a></li>
+        <li><a href="merch.html" class="active">MERCH</a></li>
         <li><a href="submit.html">SUBMIT</a></li>
       </ul>
       <div class="nav-icons">
@@ -32,13 +32,13 @@
           </svg>
         </a>
       </div>
-      <button class="nav-hamburger" aria-label="Menú" aria-expanded="false">
+      <button class="nav-hamburger nav-hamburger--light" aria-label="Menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="nav-mobile-menu">
+  <div class="nav-mobile-menu nav-mobile-menu--dark">
     <a href="index.html">RELEASES</a>
     <a href="eventos.html">EVENTOS</a>
     <a href="blog.html">BLOG</a>
@@ -55,53 +55,140 @@
     </div>
   </div>
 
-  <!-- MERCH HERO -->
-  <section style="background:#0A0A0A; padding: 120px 24px 80px; text-align:center;">
-    <p class="section-label" style="color:rgba(255,255,255,0.4);">PRÓXIMAMENTE</p>
-    <h1 style="font-family:'Bebas Neue',sans-serif;font-size:96px;color:#fff;margin:0;line-height:1;">LHG</h1>
-    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:#CC2020;margin:0 0 24px;line-height:1;">APPAREL</h2>
-    <p style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto 40px;line-height:1.7;">
-      No es merch. Es ropa que usas de día a día.<br>
-      Drops limitados, piezas con identidad.
-    </p>
-    <div class="notify-form">
-      <input type="email" placeholder="tu@email.com" class="notify-input" id="notifyEmail">
-      <button class="notify-btn" onclick="handleNotify()">NOTIFÍCAME</button>
+  <!-- APPAREL HERO -->
+  <section class="apparel-hero">
+    <div class="apparel-hero__bg-text" aria-hidden="true">APPAREL</div>
+    <div class="apparel-hero__content">
+      <p class="apparel-hero__label">LHG · EST. 2019</p>
+      <h1 class="apparel-hero__title">ROPA<br>CON<br>IDENTIDAD</h1>
+      <p class="apparel-hero__sub">
+        No es merch. Es ropa que usas de día a día.<br>
+        Drops limitados — piezas hechas para durar.
+      </p>
+      <a href="#drops" class="apparel-hero__cta">VER DROPS ↓</a>
     </div>
-    <p id="notifyMsg" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#01FF95;margin-top:12px;display:none;">¡Listo! Te avisamos cuando lancemos.</p>
+    <div class="apparel-hero__ticker" aria-hidden="true">
+      <div class="apparel-ticker__inner">
+        <span>DROP 001 · PRÓXIMAMENTE &nbsp;·&nbsp; LHG APPAREL &nbsp;·&nbsp; DROPS LIMITADOS &nbsp;·&nbsp; NO ES MERCH · ES ROPA &nbsp;·&nbsp; DROP 001 · PRÓXIMAMENTE &nbsp;·&nbsp; LHG APPAREL &nbsp;·&nbsp; DROPS LIMITADOS &nbsp;·&nbsp; NO ES MERCH · ES ROPA &nbsp;·&nbsp;</span>
+        <span aria-hidden="true">DROP 001 · PRÓXIMAMENTE &nbsp;·&nbsp; LHG APPAREL &nbsp;·&nbsp; DROPS LIMITADOS &nbsp;·&nbsp; NO ES MERCH · ES ROPA &nbsp;·&nbsp; DROP 001 · PRÓXIMAMENTE &nbsp;·&nbsp; LHG APPAREL &nbsp;·&nbsp; DROPS LIMITADOS &nbsp;·&nbsp; NO ES MERCH · ES ROPA &nbsp;·&nbsp;</span>
+      </div>
+    </div>
   </section>
 
-  <!-- DROPS GRID -->
-  <section style="padding: 80px 24px; max-width:1200px; margin:0 auto;">
-    <p class="section-label">DROP 001 — PRÓXIMAMENTE</p>
-    <div class="merch-grid">
-      <div>
-        <div style="background:#F5F2EE;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:64px;color:#E0DDD8;">LHG</span>
-        </div>
-        <p class="merch-name">TEE · DROP 001</p>
-        <p class="merch-price">PRÓXIMAMENTE</p>
+  <!-- DROPS -->
+  <section class="drops-section" id="drops">
+    <div class="drops-section__header container">
+      <div class="drops-section__meta">
+        <span class="drops-badge">DROP 001</span>
+        <span class="drops-status">PRÓXIMAMENTE</span>
       </div>
-      <div>
-        <div style="background:#F5F2EE;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:64px;color:#E0DDD8;">LHG</span>
+      <h2 class="drops-section__title">COLECCIÓN 001</h2>
+      <p class="drops-section__desc">Piezas esenciales con ADN de sello. Tallas limitadas — una sola vez.</p>
+    </div>
+
+    <div class="drops-grid container">
+
+      <div class="drop-card">
+        <div class="drop-card__image">
+          <div class="drop-card__placeholder">
+            <span class="drop-card__letter">T</span>
+          </div>
+          <div class="drop-card__overlay">
+            <span class="drop-card__overlay-text">PRÓXIMAMENTE</span>
+          </div>
+          <span class="drop-card__badge">LIMITED</span>
         </div>
-        <p class="merch-name">HOODIE · DROP 001</p>
-        <p class="merch-price">PRÓXIMAMENTE</p>
+        <div class="drop-card__info">
+          <p class="drop-card__ref">LHG-001-A</p>
+          <p class="drop-card__name">TEE LOGO</p>
+          <p class="drop-card__price">— MXN</p>
+        </div>
       </div>
-      <div>
-        <div style="background:#F5F2EE;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:64px;color:#E0DDD8;">LHG</span>
+
+      <div class="drop-card">
+        <div class="drop-card__image">
+          <div class="drop-card__placeholder drop-card__placeholder--dark">
+            <span class="drop-card__letter">H</span>
+          </div>
+          <div class="drop-card__overlay">
+            <span class="drop-card__overlay-text">PRÓXIMAMENTE</span>
+          </div>
+          <span class="drop-card__badge">LIMITED</span>
         </div>
-        <p class="merch-name">CAP · DROP 001</p>
-        <p class="merch-price">PRÓXIMAMENTE</p>
+        <div class="drop-card__info">
+          <p class="drop-card__ref">LHG-001-B</p>
+          <p class="drop-card__name">HOODIE GANG</p>
+          <p class="drop-card__price">— MXN</p>
+        </div>
       </div>
-      <div>
-        <div style="background:#F5F2EE;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:64px;color:#E0DDD8;">LHG</span>
+
+      <div class="drop-card">
+        <div class="drop-card__image">
+          <div class="drop-card__placeholder">
+            <span class="drop-card__letter">C</span>
+          </div>
+          <div class="drop-card__overlay">
+            <span class="drop-card__overlay-text">PRÓXIMAMENTE</span>
+          </div>
+          <span class="drop-card__badge">LIMITED</span>
         </div>
-        <p class="merch-name">LONGSLEEVE · DROP 001</p>
-        <p class="merch-price">PRÓXIMAMENTE</p>
+        <div class="drop-card__info">
+          <p class="drop-card__ref">LHG-001-C</p>
+          <p class="drop-card__name">CAP 6-PANEL</p>
+          <p class="drop-card__price">— MXN</p>
+        </div>
+      </div>
+
+      <div class="drop-card">
+        <div class="drop-card__image">
+          <div class="drop-card__placeholder drop-card__placeholder--dark">
+            <span class="drop-card__letter">L</span>
+          </div>
+          <div class="drop-card__overlay">
+            <span class="drop-card__overlay-text">PRÓXIMAMENTE</span>
+          </div>
+          <span class="drop-card__badge">LIMITED</span>
+        </div>
+        <div class="drop-card__info">
+          <p class="drop-card__ref">LHG-001-D</p>
+          <p class="drop-card__name">LONGSLEEVE</p>
+          <p class="drop-card__price">— MXN</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NOTIFY SECTION -->
+  <section class="notify-section">
+    <div class="notify-section__inner container">
+      <div class="notify-section__copy">
+        <p class="notify-section__label">DROPS LIMITADOS</p>
+        <h2 class="notify-section__title">SÉ EL PRIMERO<br>EN SABERLO</h2>
+        <p class="notify-section__sub">Fecha de lanzamiento y preventa exclusiva para la lista.</p>
+      </div>
+      <div class="notify-section__form">
+        <div class="notify-form-v2">
+          <input type="email" placeholder="tu@email.com" class="notify-input-v2" id="notifyEmail" autocomplete="email">
+          <button class="notify-btn-v2" onclick="handleNotify()">NOTIFÍCAME</button>
+        </div>
+        <p class="notify-terms">Sin spam. Solo drops.</p>
+        <p id="notifyMsg" class="notify-success">¡Listo! Te avisamos cuando lancemos el drop.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="apparel-about">
+    <div class="apparel-about__inner container">
+      <div class="apparel-about__text">
+        <p class="section-label">FILOSOFÍA</p>
+        <h2 class="apparel-about__title">MÁS QUE<br>MERCH</h2>
+      </div>
+      <div class="apparel-about__body">
+        <p>Latin House Gang nació en México con una visión simple: hacer música con identidad propia. La ropa es una extensión de eso.</p>
+        <p>Cada drop es pequeño, limitado y pensado para usarse — no para guardarse. Nada de tallas infinitas ni restock. Cuando se acaba, se acaba.</p>
+        <p>Diseño minimal, materiales buenos, precio justo.</p>
       </div>
     </div>
   </section>
@@ -147,8 +234,12 @@
       if (input.value && input.value.includes('@')) {
         msg.style.display = 'block';
         input.value = '';
+        input.placeholder = 'Ya estás en la lista';
       }
     }
+    document.getElementById('notifyEmail').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleNotify();
+    });
   </script>
 </body>
 </html>

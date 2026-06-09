@@ -164,22 +164,20 @@ const YOUTUBE_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" hei
 const SOUNDCLOUD_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M1.175 12.225c-.016 0-.024.01-.024.025l.435 2.716-.435 2.7c0 .014.008.024.024.024s.024-.01.024-.025l.484-2.7-.484-2.716c0-.014-.008-.024-.024-.024zm.966-.69c-.02 0-.03.012-.03.03l-.395 3.405.395 3.36c0 .018.01.03.03.03s.03-.012.03-.03l.446-3.36-.446-3.404c0-.018-.012-.03-.03-.03zm1.003-.395c-.022 0-.04.017-.04.038L2.72 15l.384 3.338c0 .022.018.038.04.038s.04-.016.04-.038L3.578 15l-.434-3.822c0-.022-.018-.038-.04-.038zm1.066-.23c-.024 0-.044.02-.044.044L3.83 15l.336 3.142c0 .024.02.044.044.044s.044-.02.044-.044L4.59 15l-.38-3.146c0-.024-.02-.044-.044-.044zm1.033-.184c-.026 0-.048.022-.048.048L4.86 15l.335 3.08c0 .026.022.048.048.048s.048-.022.048-.048L5.627 15l-.384-3.226c0-.026-.022-.048-.048-.048zM8.5 9c-.55 0-1.077.1-1.563.28C6.56 7.97 5.2 7 3.6 7 1.612 7 0 8.612 0 10.6v.05C0 12.478 1.343 14 3 14h.5v.01H16c1.657 0 3-1.343 3-3a3 3 0 00-3-3c-.16 0-.317.013-.471.038A4.5 4.5 0 008.5 9z"/></svg>`;
 
 function initSocialIcons() {
-  const spotifyLink = `<a href="${LHG_SPOTIFY}" target="_blank" rel="noopener" aria-label="Spotify">${SPOTIFY_SVG}</a>`;
-  const scLink = `<a href="${LHG_SOUNDCLOUD}" target="_blank" rel="noopener" aria-label="SoundCloud"><img src="/icons/soundcloud.png" alt="SoundCloud" class="social-logo" style="height:20px;width:auto;display:block;"></a>`;
-  const bpLink = `<a href="${LHG_BEATPORT}" target="_blank" rel="noopener" aria-label="Beatport"><img src="/icons/beatport.png" alt="Beatport" class="social-logo" style="height:20px;width:auto;display:block;"></a>`;
+  const spotifyLink   = `<a href="${LHG_SPOTIFY}"    target="_blank" rel="noopener" aria-label="Spotify">${SPOTIFY_SVG}</a>`;
+  const appleLink     = `<a href="${LHG_APPLE}"      target="_blank" rel="noopener" aria-label="Apple Music">${APPLE_SVG}</a>`;
+  const youtubeLink   = `<a href="${LHG_YOUTUBE}"    target="_blank" rel="noopener" aria-label="YouTube">${YOUTUBE_SVG}</a>`;
+  const scLink        = `<a href="${LHG_SOUNDCLOUD}" target="_blank" rel="noopener" aria-label="SoundCloud"><img src="/icons/soundcloud.png" alt="SoundCloud" class="social-logo" style="height:20px;width:auto;display:block;"></a>`;
+  const bpLink        = `<a href="${LHG_BEATPORT}"   target="_blank" rel="noopener" aria-label="Beatport"><img src="/icons/beatport.png" alt="Beatport" class="social-logo" style="height:20px;width:auto;display:block;"></a>`;
+
+  const allIcons = spotifyLink + appleLink + youtubeLink + scLink + bpLink;
 
   document.querySelectorAll('.nav-icons, .nav-mobile-icons').forEach(el => {
-    el.insertAdjacentHTML('beforeend', spotifyLink + bpLink);
+    el.insertAdjacentHTML('beforeend', allIcons);
   });
 
   document.querySelectorAll('.footer-social').forEach(el => {
-    el.insertAdjacentHTML('beforeend',
-      spotifyLink +
-      `<a href="${LHG_APPLE}" target="_blank" rel="noopener" aria-label="Apple Music">${APPLE_SVG}</a>` +
-      `<a href="${LHG_YOUTUBE}" target="_blank" rel="noopener" aria-label="YouTube">${YOUTUBE_SVG}</a>` +
-      scLink +
-      bpLink
-    );
+    el.insertAdjacentHTML('beforeend', allIcons);
   });
 }
 
@@ -620,6 +618,21 @@ function initEventoDetalle() {
   if (btnComprar) btnComprar.addEventListener('click', () => openModal(evento.id));
 }
 
+// ─── SCROLL REVEAL ──────────────────────────────────────
+function initScrollReveal() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => observer.observe(el));
+}
+
 // ─── INIT ────────────────────────────────────────────────
 function init() {
   initNavbar();
@@ -634,6 +647,7 @@ function init() {
   initFollowBtns();
   initCalendario();
   initSubmitForm();
+  initScrollReveal();
 
   if (document.getElementById('edFlyer')) initEventoDetalle();
 }

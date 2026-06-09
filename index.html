@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -17,7 +17,7 @@
         <span class="nav-logo-text" style="display:none">LATIN HOUSE GANG</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html">RELEASES</a></li>
+        <li><a href="index.html" class="active">RELEASES</a></li>
         <li><a href="eventos.html">EVENTOS</a></li>
         <li><a href="blog.html">BLOG</a></li>
         <li><a href="merch.html">MERCH</a></li>
@@ -61,21 +61,25 @@
     <div class="hero-video-wrapper">
       <iframe
         class="hero-video"
-        src="https://www.youtube.com/embed/ngEGJ63LBlA?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&playlist=ngEGJ63LBlA&playsinline=1"
+        src="https://www.youtube.com/embed/ngEGJ63LBlA?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&playlist=ngEGJ63LBlA&playsinline=1&disablekb=1&iv_load_policy=3&modestbranding=1"
         frameborder="0"
         allow="autoplay; fullscreen"
         allowfullscreen
       ></iframe>
       <div class="hero-overlay"></div>
     </div>
-    <div class="hero-content">
+    <div class="hero-content hero-content--animate">
       <img src="LHG_Logo_Blanco_Banner.png" alt="Latin House Gang" class="hero-logo" onerror="this.style.display='none'">
       <p class="hero-tagline">Electronic Music Label · Est. 2019 · México</p>
+    </div>
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <span class="hero-scroll-label">SCROLL</span>
+      <div class="hero-scroll-line"></div>
     </div>
   </section>
 
   <!-- RELEASES -->
-  <section class="releases-section">
+  <section class="releases-section reveal">
     <div class="container">
       <p class="section-label">RELEASES</p>
       <div class="releases-grid" id="releasesGridHome"></div>
@@ -84,13 +88,13 @@
 
   <!-- SETS -->
   <section class="sets-section">
-    <div class="section-header">
+    <div class="sets-section__header reveal">
       <p class="section-label">EN VIVO</p>
       <h2 class="section-title">SETS</h2>
     </div>
     <div class="sets-grid" id="setsGrid"></div>
     <div class="sets-footer">
-      <a href="https://www.youtube.com/@michaelbmmusic" target="_blank" rel="noopener" class="btn-outline">
+      <a href="https://www.youtube.com/channel/UCR5vibL8REsZgGjX4G1fMBQ" target="_blank" rel="noopener" class="btn-outline">
         VER MÁS EN YOUTUBE →
       </a>
     </div>
@@ -99,7 +103,7 @@
   <hr class="section-divider">
 
   <!-- PRÓXIMOS EVENTOS -->
-  <section class="eventos-section">
+  <section class="eventos-section reveal">
     <div class="container">
       <p class="section-label">PRÓXIMOS EVENTOS</p>
       <div class="eventos-list" id="eventosListHome"></div>
