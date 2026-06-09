@@ -1,27 +1,28 @@
-﻿<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit a Track — Latin House Gang</title>
-  <meta name="description" content="¿Eres DJ o productor? Envía tu demo a Latin House Gang.">
+  <title>Demo Submission — Latin House Gang</title>
+  <meta name="description" content="Are you a DJ or producer? Submit your demo to Latin House Gang. We listen to everything.">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="dark-body">
 
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar navbar--dark" id="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="nav-logo">
-        <img src="LHG_Logo_Negro_Banner.png" alt="Latin House Gang" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img src="LHG_Logo_Blanco_Banner.png" alt="Latin House Gang" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span class="nav-logo-text" style="display:none">LATIN HOUSE GANG</span>
       </a>
       <ul class="nav-links">
         <li><a href="index.html">RELEASES</a></li>
-        <li><a href="eventos.html">EVENTOS</a></li>
-        <li><a href="blog.html">BLOG</a></li>
-        <li><a href="merch.html">MERCH</a></li>
-        <li><a href="submit.html">SUBMIT</a></li>
+        <li><a href="eventos.html">EVENTS</a></li>
+        <li><a href="blog.html">JOURNAL</a></li>
+        <li><a href="merch.html">SHOP</a></li>
+        <li><a href="submit.html" class="active">DEMO SUBMISSION</a></li>
+        <li><a href="https://www.instagram.com/michaelbmmusic/" target="_blank" rel="noopener" class="nav-founder-link">MICHAELBM</a></li>
       </ul>
       <div class="nav-icons">
         <a href="https://www.instagram.com/latinhousegangmusic/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -32,18 +33,19 @@
           </svg>
         </a>
       </div>
-      <button class="nav-hamburger" aria-label="Menú" aria-expanded="false">
+      <button class="nav-hamburger nav-hamburger--light" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="nav-mobile-menu">
+  <div class="nav-mobile-menu nav-mobile-menu--dark">
     <a href="index.html">RELEASES</a>
-    <a href="eventos.html">EVENTOS</a>
-    <a href="blog.html">BLOG</a>
-    <a href="merch.html">MERCH</a>
-    <a href="submit.html">SUBMIT</a>
+    <a href="eventos.html">EVENTS</a>
+    <a href="blog.html">JOURNAL</a>
+    <a href="merch.html">SHOP</a>
+    <a href="submit.html">DEMO SUBMISSION</a>
+    <a href="https://www.instagram.com/michaelbmmusic/" target="_blank" rel="noopener" class="nav-founder-link--mobile">MICHAELBM ↗</a>
     <div class="nav-mobile-icons">
       <a href="https://www.instagram.com/latinhousegangmusic/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
@@ -56,89 +58,101 @@
   </div>
 
   <!-- PAGE HERO -->
-  <div class="container">
-    <div class="page-hero">
-      <h1 class="page-hero-title">SUBMIT A TRACK</h1>
-      <p class="page-hero-sub">ENVÍA TU DEMO · RESPONDEMOS EN 2-4 SEMANAS</p>
+  <section class="submit-hero">
+    <div class="container">
+      <p class="submit-hero__label">DEMO SUBMISSION</p>
+      <h1 class="submit-hero__title">We listen<br>to everything.</h1>
+      <p class="submit-hero__sub">Got music? Send it. We respond within 2–4 weeks.</p>
     </div>
+  </section>
 
-    <!-- TRACKSTACK -->
-    <div class="trackstack-option">
-      <p class="trackstack-label">¿Prefieres enviarlo directamente?</p>
-      <a href="https://www.trackstack.app" target="_blank" rel="noopener" class="btn-trackstack">
-        ENVIAR DEMO VÍA TRACKSTACK
-      </a>
-      <p class="trackstack-sub">O llena el formulario de abajo</p>
-    </div>
-
-    <!-- LAYOUT -->
-    <div class="submit-layout">
-
-      <!-- FORM -->
-      <div class="submit-form-wrap">
-        <p style="font-size:16px; color:var(--muted); margin-bottom:32px; line-height:1.7;">
-          Si eres DJ o productor y quieres ser parte de Latin House Gang, mándanos tu trabajo.
-          Escuchamos todo lo que llega y respondemos en un plazo de 2 a 4 semanas.
-        </p>
-
-        <form id="submitForm" novalidate>
-          <div class="form-group">
-            <label class="form-label" for="nombreArtistico">Nombre artístico *</label>
-            <input class="form-input" type="text" id="nombreArtistico" name="nombreArtistico" required placeholder="Tu nombre o alias">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="email">Email *</label>
-            <input class="form-input" type="email" id="email" name="email" required placeholder="tu@email.com">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="linkDemo">Link al demo *</label>
-            <input class="form-input" type="url" id="linkDemo" name="linkDemo" required placeholder="Link privado de SoundCloud con descarga activa">
-            <p class="demo-note">⚠ Solo aceptamos links de SoundCloud privados con descarga habilitada.<br>No aceptamos Dropbox, WeTransfer ni Google Drive.</p>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="genero">Género</label>
-            <div class="form-select-wrap">
-              <select class="form-select" id="genero" name="genero">
-                <option value="" disabled selected>Selecciona un género</option>
-                <option value="latin-house">Latin House</option>
-                <option value="afro-house">Afro House</option>
-                <option value="tech-house">Tech House</option>
-                <option value="deep-house">Deep House</option>
-                <option value="cumbia">Cumbia Electrónica</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="mensaje">Mensaje (opcional)</label>
-            <textarea class="form-textarea" id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre tu música, tus influencias o lo que quieras decirnos..."></textarea>
-          </div>
-
-          <button type="submit" class="submit-btn">ENVIAR DEMO</button>
-        </form>
-
-        <div class="form-success" id="formSuccess">
-          ¡GRACIAS! Revisaremos tu demo y te contactaremos en 2-4 semanas.
+  <!-- TRACKSTACK -->
+  <section class="submit-trackstack">
+    <div class="container">
+      <div class="submit-trackstack__inner">
+        <div class="submit-trackstack__copy">
+          <p class="submit-trackstack__label">PREFERRED METHOD</p>
+          <p class="submit-trackstack__text">Send your demo directly through TrackStack — our preferred submission platform.</p>
         </div>
+        <a href="https://www.trackstack.app" target="_blank" rel="noopener" class="btn-trackstack">
+          SUBMIT VIA TRACKSTACK →
+        </a>
       </div>
-
-      <!-- INFO -->
-      <div class="submit-info">
-        <h2 class="submit-info-title">¿QUÉ BUSCAMOS?</h2>
-        <ul class="submit-bullets">
-          <li>Producciones originales en latin house, afro house, tech house o géneros afines</li>
-          <li>EPs, tracks sueltos, remixes — todo es bienvenido</li>
-          <li>Calidad de audio mínima: WAV o AIFF, 320kbps+</li>
-          <li>Artistas con perspectiva latina en su música</li>
-        </ul>
-      </div>
-
+      <p class="submit-trackstack__alt">Or fill in the form below.</p>
     </div>
-  </div>
+  </section>
+
+  <!-- LAYOUT -->
+  <section class="submit-body">
+    <div class="container">
+      <div class="submit-layout">
+
+        <!-- FORM -->
+        <div class="submit-form-wrap">
+          <p class="submit-form__intro">
+            If you're a DJ or producer and want to be part of Latin House Gang, send us your work.
+            We listen to everything that comes in and respond within 2 to 4 weeks.
+          </p>
+
+          <form id="submitForm" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="nombreArtistico">Artist name *</label>
+              <input class="form-input" type="text" id="nombreArtistico" name="nombreArtistico" required placeholder="Your name or alias">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email *</label>
+              <input class="form-input" type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="linkDemo">Demo link *</label>
+              <input class="form-input" type="url" id="linkDemo" name="linkDemo" required placeholder="Private SoundCloud link with download enabled">
+              <p class="demo-note">⚠ We only accept private SoundCloud links with download enabled.<br>No Dropbox, WeTransfer, or Google Drive.</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="genero">Genre</label>
+              <div class="form-select-wrap">
+                <select class="form-select" id="genero" name="genero">
+                  <option value="" disabled selected>Select a genre</option>
+                  <option value="latin-house">Latin House</option>
+                  <option value="afro-house">Afro House</option>
+                  <option value="tech-house">Tech House</option>
+                  <option value="deep-house">Deep House</option>
+                  <option value="cumbia">Electronic Cumbia</option>
+                  <option value="otro">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="mensaje">Message (optional)</label>
+              <textarea class="form-textarea" id="mensaje" name="mensaje" rows="4" placeholder="Tell us about your music, your influences, or anything you want us to know..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">SEND DEMO</button>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            THANKS! We'll review your demo and get back to you within 2–4 weeks.
+          </div>
+        </div>
+
+        <!-- INFO -->
+        <div class="submit-info">
+          <h2 class="submit-info-title">WHAT WE'RE LOOKING FOR</h2>
+          <ul class="submit-bullets">
+            <li>Original productions in latin house, afro house, tech house, or related genres</li>
+            <li>EPs, singles, remixes — everything welcome</li>
+            <li>Minimum audio quality: WAV or AIFF, 320kbps+</li>
+            <li>Artists with a Latin perspective in their music</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -147,14 +161,15 @@
         <div class="footer-logo">
           <img src="LHG_Logo_Blanco_Banner.png" alt="Latin House Gang" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <span class="footer-logo-text" style="display:none">LATIN HOUSE GANG</span>
-          <p class="footer-tagline">Electronic Music Label · Est. 2019 · México</p>
+          <p class="footer-tagline">Underground Electronic Music · Mexico City · Est. 2019</p>
         </div>
         <ul class="footer-links">
           <li><a href="index.html">RELEASES</a></li>
-          <li><a href="eventos.html">EVENTOS</a></li>
-          <li><a href="blog.html">BLOG</a></li>
-          <li><a href="merch.html">MERCH</a></li>
-          <li><a href="submit.html">SUBMIT</a></li>
+          <li><a href="eventos.html">EVENTS</a></li>
+          <li><a href="blog.html">JOURNAL</a></li>
+          <li><a href="merch.html">SHOP</a></li>
+          <li><a href="submit.html">DEMO SUBMISSION</a></li>
+          <li><a href="https://www.instagram.com/michaelbmmusic/" target="_blank" rel="noopener">MICHAELBM ↗</a></li>
         </ul>
         <div class="footer-social">
           <a href="https://www.instagram.com/latinhousegangmusic/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -167,8 +182,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">© 2025 Latin House Gang. Todos los derechos reservados.</span>
-        <span class="footer-copy">LHG Records · México</span>
+        <span class="footer-copy">© 2025 Latin House Gang. All rights reserved.</span>
+        <span class="footer-copy">LHG Records · Mexico City</span>
       </div>
     </div>
   </footer>

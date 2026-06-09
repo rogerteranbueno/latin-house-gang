@@ -2325,3 +2325,430 @@ img { display: block; max-width: 100%; }
   .drops-grid { grid-template-columns: repeat(2, 1fr); gap: 1px; }
   .apparel-hero__bg-text { font-size: 100px; }
 }
+
+/* ════════════════════════════════════════════
+   REDESIGN: DARK / CLUB / LABEL-FIRST
+   ════════════════════════════════════════════ */
+
+/* ─── DARK BODY ─── */
+.dark-body {
+  background: #0A0A0A;
+}
+
+/* ─── NAV FOUNDER LINK ─── */
+.nav-founder-link {
+  color: var(--accent) !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.nav-founder-link:hover { opacity: 0.75; }
+.nav-founder-link--mobile {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+/* ─── SECTION LABEL LIGHT (on dark bg) ─── */
+.section-label--light {
+  color: rgba(255,255,255,0.35);
+}
+
+/* ─── LABEL IDENTITY SECTION ─── */
+.label-identity {
+  background: #111;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 80px 0;
+}
+.label-identity__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.label-identity__label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.3em;
+  margin-bottom: 20px;
+}
+.label-identity__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 5vw, 72px);
+  color: #fff;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.label-identity__body {
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 20px;
+}
+.label-identity__founder {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.12em;
+}
+.label-founder-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.label-founder-link:hover { opacity: 0.75; }
+
+.label-identity__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.label-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.2s;
+}
+.label-stat:hover { background: rgba(255,255,255,0.07); }
+.label-stat__number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.label-stat__label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ─── RELEASES DARK ─── */
+.releases-section--dark {
+  background: #0A0A0A;
+  padding: 80px 0;
+}
+.releases-section--dark .release-title { color: #fff; }
+.releases-section--dark .release-artist { color: rgba(255,255,255,0.4); }
+
+/* ─── EVENTS DARK ─── */
+.eventos-section--dark {
+  background: #111;
+  padding: 80px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.eventos-section--dark .evento-card {
+  border-color: rgba(255,255,255,0.1);
+}
+.eventos-section--dark .evento-nombre,
+.eventos-section--dark .evento-venue,
+.eventos-section--dark .evento-city {
+  color: #fff;
+}
+.eventos-section--dark .evento-day-num { color: #fff; }
+.eventos-section--dark .evento-month,
+.eventos-section--dark .evento-weekday { color: rgba(255,255,255,0.4); }
+.eventos-section--dark .evento-divider { background: rgba(255,255,255,0.12); }
+.eventos-section--dark .precio-desde { color: rgba(255,255,255,0.5); }
+.eventos-section--dark .precio-valor { color: #fff; }
+.btn-ver-eventos--light {
+  color: rgba(255,255,255,0.5);
+  border-color: rgba(255,255,255,0.15);
+  margin-top: 40px;
+}
+.btn-ver-eventos--light:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+/* ─── MERCH TEASER (on homepage) ─── */
+.merch-teaser {
+  background: #0A0A0A;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 100px 0;
+}
+.merch-teaser__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.merch-teaser__label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.3em;
+  margin-bottom: 20px;
+}
+.merch-teaser__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 6vw, 88px);
+  color: #fff;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.merch-teaser__sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.merch-teaser__cta {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(204,32,32,0.4);
+  padding-bottom: 4px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.merch-teaser__cta:hover {
+  color: #ff3a3a;
+  border-color: #ff3a3a;
+}
+.merch-teaser__visual {
+  aspect-ratio: 3/4;
+  max-height: 420px;
+}
+.merch-teaser__placeholder {
+  width: 100%;
+  height: 100%;
+  background: #1A1A1A;
+  border: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.merch-teaser__placeholder-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(80px, 10vw, 140px);
+  color: rgba(255,255,255,0.06);
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+/* ─── DEMO STRIP ─── */
+.demo-strip {
+  background: var(--accent);
+  padding: 28px 0;
+}
+.demo-strip__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.demo-strip__text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+.demo-strip__text span {
+  opacity: 0.7;
+  font-size: 18px;
+}
+.demo-strip__cta {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 10px 24px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.demo-strip__cta:hover { background: rgba(0,0,0,0.15); }
+
+/* ─── SHOP HERO (merch page) ─── */
+.shop-hero {
+  background: #0A0A0A;
+  padding: 140px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+.shop-hero__inner {
+  padding-bottom: 80px;
+}
+.shop-hero__meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.shop-hero__tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.2em;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 14px;
+}
+.shop-hero__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(80px, 13vw, 180px);
+  color: #fff;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+.shop-hero__sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  max-width: 400px;
+}
+.shop-hero__ticker {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.shop-ticker__inner {
+  display: inline-block;
+  animation: tickerScroll 28s linear infinite;
+}
+.shop-ticker__inner span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.18em;
+}
+
+/* ─── SHOP CONTEXT (quote) ─── */
+.shop-context {
+  background: #111;
+  padding: 72px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.shop-context__inner {
+  max-width: 760px;
+}
+.shop-context__quote {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+.shop-context__attr {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.15em;
+}
+
+/* ─── DROPS LIGHT VARIANT ─── */
+.drops-section--light {
+  background: var(--bg-alt);
+  padding: 80px 0 100px;
+}
+.drops-badge--dark { background: var(--text); color: #fff; }
+.drops-status--dark { color: var(--muted); }
+.drops-section__title--dark { color: var(--text); }
+.drops-section__desc--dark { color: var(--muted); }
+
+/* ─── RESPONSIVE: NEW SECTIONS ─── */
+@media (max-width: 1024px) {
+  .label-identity__inner { grid-template-columns: 1fr; gap: 48px; }
+  .merch-teaser__inner { grid-template-columns: 1fr; gap: 48px; }
+  .merch-teaser__visual { max-height: 280px; }
+}
+@media (max-width: 768px) {
+  .label-identity { padding: 60px 0; }
+  .label-identity__stats { grid-template-columns: 1fr 1fr; }
+  .merch-teaser { padding: 72px 0; }
+  .shop-hero { padding-top: 100px; }
+  .shop-hero__title { font-size: 72px; }
+  .shop-context__quote { font-size: 16px; }
+  .demo-strip__inner { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .label-stat__number { font-size: 40px; }
+  .shop-hero__title { font-size: 56px; }
+  .merch-teaser__title { font-size: 56px; }
+}
+
+/* ─── SUBMIT PAGE (dark redesign) ─── */
+.submit-hero {
+  padding: 140px 0 80px;
+  background: #0A0A0A;
+}
+.submit-hero__label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #CC2020;
+  margin-bottom: 20px;
+}
+.submit-hero__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 9vw, 110px);
+  line-height: 0.95;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.submit-hero__sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em;
+}
+.submit-trackstack {
+  background: #111;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 48px 0;
+}
+.submit-trackstack__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.submit-trackstack__label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #CC2020;
+  margin-bottom: 8px;
+}
+.submit-trackstack__text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  max-width: 380px;
+}
+.submit-trackstack__alt {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 20px;
+  letter-spacing: 0.05em;
+}
+.submit-body {
+  background: #0A0A0A;
+  padding: 80px 0 120px;
+}
+.submit-form__intro {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+@media (max-width: 768px) {
+  .submit-trackstack__inner { flex-direction: column; align-items: flex-start; }
+  .submit-hero { padding: 120px 0 60px; }
+}

@@ -122,34 +122,37 @@ const eventos = [
   {
     id: "evento-1",
     nombre: "UNDERGROUND SESSION VOL.3",
-    fecha: "Sábado 26 Julio 2025", hora: "23:00 — 06:00",
+    fecha: "Saturday 26 July 2025", hora: "23:00 — 06:00",
     venue: "El Bunker", direccion: "Col. Doctores, CDMX, México",
     ciudad: "CDMX, México", precioDesde: 280, moneda: "MXN",
     status: "upcoming", lugaresLimitados: false, flyer: null,
     lineup: ["Minow", "Gama"],
     tickets: [
-      { tipo: "EARLY BIRD", descripcion: "Preventa limitada", precio: 180 },
-      { tipo: "GENERAL",    descripcion: "Acceso general",    precio: 280 }
+      { tipo: "EARLY BIRD", descripcion: "Limited presale",   precio: 180 },
+      { tipo: "GENERAL",    descripcion: "General admission", precio: 280 }
     ]
   },
   {
     id: "evento-2",
     nombre: "LHG SHOWCASE",
-    fecha: "Sábado 23 Agosto 2025", hora: "22:00 — 05:00",
+    fecha: "Saturday 23 August 2025", hora: "22:00 — 05:00",
     venue: "Foro 45", direccion: "Av. Américas 1254, Guadalajara, Jalisco",
     ciudad: "Guadalajara, México", precioDesde: 320, moneda: "MXN",
     status: "upcoming", lugaresLimitados: true, flyer: null,
     lineup: ["MichaelBM", "Bautista", "Gama", "Minow"],
     tickets: [
-      { tipo: "PREVENTA", descripcion: "Precio de preventa", precio: 320 },
-      { tipo: "TAQUILLA", descripcion: "Precio en puerta",   precio: 450 }
+      { tipo: "PRE-SALE", descripcion: "Pre-sale price", precio: 320 },
+      { tipo: "DOOR",     descripcion: "Door price",     precio: 450 }
     ]
   }
 ];
 
 // ─── HELPERS ────────────────────────────────────────────
 function parseFecha(fechaStr) {
-  const months = { 'enero':0,'febrero':1,'marzo':2,'abril':3,'mayo':4,'junio':5,'julio':6,'agosto':7,'septiembre':8,'octubre':9,'noviembre':10,'diciembre':11 };
+  const months = {
+    'january':0,'february':1,'march':2,'april':3,'may':4,'june':5,
+    'july':6,'august':7,'september':8,'october':9,'november':10,'december':11
+  };
   const parts = fechaStr.toLowerCase().split(' ');
   const day = parseInt(parts[1]);
   const month = months[parts[2]];
@@ -269,10 +272,10 @@ function renderReleases(containerId, limit) {
 
 // ─── SETS ───────────────────────────────────────────────
 const sets = [
-  { title: "Latin House Gang · CDMX", views: "147K views", youtubeId: "ngEGJ63LBlA" },
+  { title: "Latin House Gang · CDMX Live", views: "147K views", youtubeId: "ngEGJ63LBlA" },
   { title: "Latin House Gang · Live Set", views: "120K views", youtubeId: "CZbHFXEM7a8" },
-  { title: "MichaelBM · R.I.O. Shine On Remix", views: "más vistas", youtubeId: "FjzbdD8FqTQ" },
-  { title: "Latin House Gang · Último Set", views: "14K views", youtubeId: "4yEQl4cv2Oo" }
+  { title: "MichaelBM · R.I.O. Shine On Remix", views: "Top play", youtubeId: "FjzbdD8FqTQ" },
+  { title: "Latin House Gang · Latest Set", views: "14K views", youtubeId: "4yEQl4cv2Oo" }
 ];
 
 function renderSets(containerId) {
@@ -299,12 +302,12 @@ function renderSets(containerId) {
 
 // ─── BLOG GRID ──────────────────────────────────────────
 const blogPosts = [
-  { category: "RELEASE", date: "Junio 2025", title: "PASKMAN PRESENTA 'CIEMPIÉS' — LHG #027", excerpt: "El productor Paskman debuta en el sello con un track que captura la energía cruda del underground latino.", color: "#E8650A" },
-  { category: "RELEASE", date: "Mayo 2025", title: "BAUTISTA LANZA 'LOVER' — LHG #025", excerpt: "Deep house melódico con identidad propia. El segundo release de Bautista en el sello confirma su sonido.", color: "#7AB3D4" },
-  { category: "EVENTO", date: "Abril 2025", title: "RECAP: LHG SHOWCASE EN TOLUCA", excerpt: "Más de 400 personas en una noche que definió el sonido del label. Fotos, videos y lo que viene.", color: "#CC2020" },
-  { category: "MIX", date: "Marzo 2025", title: "LHG PODCAST 001 · GAMA", excerpt: "Una hora sin concesiones. Gama abre la serie de mixes exclusivos del sello.", color: "#1A6B6B" },
-  { category: "NOTICIA", date: "Febrero 2025", title: "LATIN HOUSE GANG VOL.4 YA DISPONIBLE", excerpt: "La cuarta entrega de la compilación insignia del sello. 10 tracks, 8 artistas, un solo sonido.", color: "#CC2020" },
-  { category: "EVENTO", date: "Enero 2025", title: "PRIMERA FECHA EN CDMX — 26 JULIO · EL BUNKER", excerpt: "Latin House Gang llega a CDMX. Minow y Gama presentarán material nuevo en el Bunker.", color: "#5C2D8A" }
+  { category: "RELEASE", date: "June 2025", title: "PASKMAN DROPS 'CIEMPIÉS' — LHG #027", excerpt: "Paskman makes his label debut with a track that captures the raw energy of the Latin underground.", color: "#E8650A" },
+  { category: "RELEASE", date: "May 2025", title: "BAUTISTA — 'LOVER' OUT NOW — LHG #025", excerpt: "Melodic deep house with its own identity. Bautista's second release on the label confirms his sound.", color: "#7AB3D4" },
+  { category: "EVENT", date: "April 2025", title: "RECAP: LHG SHOWCASE TOLUCA", excerpt: "400+ people. One night that defined the label's sound. Photos, video, and what's next.", color: "#CC2020" },
+  { category: "MIX", date: "March 2025", title: "LHG PODCAST 001 · GAMA", excerpt: "One hour, no compromises. Gama opens the label's exclusive mix series.", color: "#1A6B6B" },
+  { category: "NEWS", date: "February 2025", title: "LATIN HOUSE GANG VOL.4 — OUT NOW", excerpt: "The fourth installment of the label's flagship compilation. 10 tracks, 8 artists, one sound.", color: "#CC2020" },
+  { category: "EVENT", date: "January 2025", title: "FIRST CDMX DATE — JULY 26 · EL BUNKER", excerpt: "Latin House Gang hits Mexico City. Minow and Gama perform new material at El Bunker.", color: "#5C2D8A" }
 ];
 
 function renderBlog(containerId) {
@@ -351,7 +354,7 @@ function renderEventos(containerId, limit) {
           </div>
         </div>
         <div class="evento-ticket-col">
-          <div class="evento-precio">Desde $${e.precioDesde} ${e.moneda}</div>
+          <div class="evento-precio">From $${e.precioDesde} ${e.moneda}</div>
           <button class="btn-tickets${soldOut ? '' : ''}"
             ${soldOut ? 'disabled' : ''}
             onclick="openModal('${e.id}'); event.stopPropagation()">
@@ -555,7 +558,7 @@ function initEventoDetalle() {
   const setEl = (sel, val) => { const el = document.getElementById(sel); if (el) el.textContent = val; };
   setEl('edNombre', evento.nombre);
   const f = parseFecha(evento.fecha);
-  const monthNums = {'enero':'01','febrero':'02','marzo':'03','abril':'04','mayo':'05','junio':'06','julio':'07','agosto':'08','septiembre':'09','octubre':'10','noviembre':'11','diciembre':'12'};
+  const monthNums = {'january':'01','february':'02','march':'03','april':'04','may':'05','june':'06','july':'07','august':'08','september':'09','october':'10','november':'11','december':'12'};
   const partsF = evento.fecha.toLowerCase().split(' ');
   const mmStr = monthNums[partsF[2]] || '??';
   setEl('edFechaFlyer', `${String(f.day).padStart(2,'0')}.${mmStr}.${String(f.year).slice(2)} · ${evento.ciudad.toUpperCase()}`);
@@ -578,7 +581,7 @@ function initEventoDetalle() {
   setEl('edOrgStats', `· ${evento.ciudad} · desde 2019`);
 
   // Sticky box
-  setEl('edPrecio', `Desde $${evento.precioDesde} ${evento.moneda}`);
+  setEl('edPrecio', `From $${evento.precioDesde} ${evento.moneda}`);
   setEl('edFechaSticky', `${f.monthName.slice(0,3)} ${f.day} · ${evento.hora}`);
 
   // Venue & address

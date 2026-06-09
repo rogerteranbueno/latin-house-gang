@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Latin House Gang — Electronic Music Label</title>
-  <meta name="description" content="Sello discográfico de latin house y música electrónica. México. Est. 2019.">
+  <title>Latin House Gang — Underground Electronic Music Label</title>
+  <meta name="description" content="Underground electronic music label from Mexico City. Founded by MichaelBM. Est. 2019.">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="dark-body">
 
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar navbar--dark" id="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="nav-logo">
-        <img src="LHG_Logo_Negro_Banner.png" alt="Latin House Gang" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img src="LHG_Logo_Blanco_Banner.png" alt="Latin House Gang" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span class="nav-logo-text" style="display:none">LATIN HOUSE GANG</span>
       </a>
       <ul class="nav-links">
         <li><a href="index.html" class="active">RELEASES</a></li>
-        <li><a href="eventos.html">EVENTOS</a></li>
-        <li><a href="blog.html">BLOG</a></li>
-        <li><a href="merch.html">MERCH</a></li>
-        <li><a href="submit.html">SUBMIT</a></li>
+        <li><a href="eventos.html">EVENTS</a></li>
+        <li><a href="blog.html">JOURNAL</a></li>
+        <li><a href="merch.html">SHOP</a></li>
+        <li><a href="submit.html">DEMO SUBMISSION</a></li>
+        <li><a href="https://www.instagram.com/michaelbmmusic/" target="_blank" rel="noopener" class="nav-founder-link">MICHAELBM</a></li>
       </ul>
       <div class="nav-icons">
         <a href="https://www.instagram.com/latinhousegangmusic/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -32,19 +33,20 @@
           </svg>
         </a>
       </div>
-      <button class="nav-hamburger" aria-label="Menú" aria-expanded="false">
+      <button class="nav-hamburger nav-hamburger--light" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
   <!-- MOBILE MENU -->
-  <div class="nav-mobile-menu">
+  <div class="nav-mobile-menu nav-mobile-menu--dark">
     <a href="index.html">RELEASES</a>
-    <a href="eventos.html">EVENTOS</a>
-    <a href="blog.html">BLOG</a>
-    <a href="merch.html">MERCH</a>
-    <a href="submit.html">SUBMIT</a>
+    <a href="eventos.html">EVENTS</a>
+    <a href="blog.html">JOURNAL</a>
+    <a href="merch.html">SHOP</a>
+    <a href="submit.html">DEMO SUBMISSION</a>
+    <a href="https://www.instagram.com/michaelbmmusic/" target="_blank" rel="noopener" class="nav-founder-link--mobile">MICHAELBM ↗</a>
     <div class="nav-mobile-icons">
       <a href="https://www.instagram.com/latinhousegangmusic/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
@@ -70,7 +72,7 @@
     </div>
     <div class="hero-content hero-content--animate">
       <img src="LHG_Logo_Blanco_Banner.png" alt="Latin House Gang" class="hero-logo" onerror="this.style.display='none'">
-      <p class="hero-tagline">Electronic Music Label · Est. 2019 · México</p>
+      <p class="hero-tagline">Underground Electronic Music · Mexico City · Est. 2019</p>
     </div>
     <div class="hero-scroll-indicator" aria-hidden="true">
       <span class="hero-scroll-label">SCROLL</span>
@@ -78,36 +80,95 @@
     </div>
   </section>
 
+  <!-- LABEL IDENTITY -->
+  <section class="label-identity">
+    <div class="label-identity__inner container">
+      <div class="label-identity__text">
+        <p class="label-identity__label">THE LABEL</p>
+        <h2 class="label-identity__title">Built from<br>the dancefloor up.</h2>
+        <p class="label-identity__body">
+          Latin House Gang is an underground electronic music label from Mexico City.
+          We release latin house, afro rhythms, and deep dancefloor music —
+          rooted in Latin America, built for the world.
+        </p>
+        <p class="label-identity__founder">
+          Founded by <a href="https://www.instagram.com/michaelbmmusic/" target="_blank" rel="noopener" class="label-founder-link">MichaelBM</a> · Mexico City · 2019
+        </p>
+      </div>
+      <div class="label-identity__stats">
+        <div class="label-stat">
+          <span class="label-stat__number">29+</span>
+          <span class="label-stat__label">Releases</span>
+        </div>
+        <div class="label-stat">
+          <span class="label-stat__number">8</span>
+          <span class="label-stat__label">Artists</span>
+        </div>
+        <div class="label-stat">
+          <span class="label-stat__number">6</span>
+          <span class="label-stat__label">Years</span>
+        </div>
+        <div class="label-stat">
+          <span class="label-stat__number">MX</span>
+          <span class="label-stat__label">Origin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- RELEASES -->
-  <section class="releases-section reveal">
+  <section class="releases-section releases-section--dark reveal">
     <div class="container">
-      <p class="section-label">RELEASES</p>
+      <p class="section-label section-label--light">RELEASES</p>
       <div class="releases-grid" id="releasesGridHome"></div>
     </div>
   </section>
 
-  <!-- SETS -->
+  <!-- LIVE SETS -->
   <section class="sets-section">
     <div class="sets-section__header reveal">
-      <p class="section-label">EN VIVO</p>
+      <p class="section-label">LIVE</p>
       <h2 class="section-title">SETS</h2>
     </div>
     <div class="sets-grid" id="setsGrid"></div>
     <div class="sets-footer">
       <a href="https://www.youtube.com/channel/UCR5vibL8REsZgGjX4G1fMBQ" target="_blank" rel="noopener" class="btn-outline">
-        VER MÁS EN YOUTUBE →
+        MORE ON YOUTUBE →
       </a>
     </div>
   </section>
 
-  <hr class="section-divider">
-
-  <!-- PRÓXIMOS EVENTOS -->
-  <section class="eventos-section reveal">
+  <!-- EVENTS -->
+  <section class="eventos-section eventos-section--dark reveal">
     <div class="container">
-      <p class="section-label">PRÓXIMOS EVENTOS</p>
+      <p class="section-label section-label--light">UPCOMING EVENTS</p>
       <div class="eventos-list" id="eventosListHome"></div>
-      <a href="eventos.html" class="btn-ver-eventos">VER TODOS LOS EVENTOS →</a>
+      <a href="eventos.html" class="btn-ver-eventos btn-ver-eventos--light">VIEW ALL EVENTS →</a>
+    </div>
+  </section>
+
+  <!-- MERCH TEASER -->
+  <section class="merch-teaser">
+    <div class="merch-teaser__inner container">
+      <div class="merch-teaser__copy">
+        <p class="merch-teaser__label">LHG APPAREL</p>
+        <h2 class="merch-teaser__title">The label,<br>wearable.</h2>
+        <p class="merch-teaser__sub">Limited drops. No restock. Wear the culture.</p>
+        <a href="merch.html" class="merch-teaser__cta">DROP 001 — COMING SOON →</a>
+      </div>
+      <div class="merch-teaser__visual">
+        <div class="merch-teaser__placeholder">
+          <span class="merch-teaser__placeholder-text">LHG</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO STRIP -->
+  <section class="demo-strip">
+    <div class="demo-strip__inner container">
+      <p class="demo-strip__text">Got music? <span>We listen to everything.</span></p>
+      <a href="submit.html" class="demo-strip__cta">SUBMIT A DEMO →</a>
     </div>
   </section>
 
@@ -118,14 +179,15 @@
         <div class="footer-logo">
           <img src="LHG_Logo_Blanco_Banner.png" alt="Latin House Gang" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <span class="footer-logo-text" style="display:none">LATIN HOUSE GANG</span>
-          <p class="footer-tagline">Electronic Music Label · Est. 2019 · México</p>
+          <p class="footer-tagline">Underground Electronic Music · Mexico City · Est. 2019</p>
         </div>
         <ul class="footer-links">
           <li><a href="index.html">RELEASES</a></li>
-          <li><a href="eventos.html">EVENTOS</a></li>
-          <li><a href="blog.html">BLOG</a></li>
-          <li><a href="merch.html">MERCH</a></li>
-          <li><a href="submit.html">SUBMIT</a></li>
+          <li><a href="eventos.html">EVENTS</a></li>
+          <li><a href="blog.html">JOURNAL</a></li>
+          <li><a href="merch.html">SHOP</a></li>
+          <li><a href="submit.html">DEMO SUBMISSION</a></li>
+          <li><a href="https://www.instagram.com/michaelbmmusic/" target="_blank" rel="noopener">MICHAELBM ↗</a></li>
         </ul>
         <div class="footer-social">
           <a href="https://www.instagram.com/latinhousegangmusic/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -138,8 +200,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">© 2025 Latin House Gang. Todos los derechos reservados.</span>
-        <span class="footer-copy">LHG Records · México</span>
+        <span class="footer-copy">© 2025 Latin House Gang. All rights reserved.</span>
+        <span class="footer-copy">LHG Records · Mexico City</span>
       </div>
     </div>
   </footer>
@@ -147,23 +209,23 @@
   <!-- MODAL TICKETS -->
   <div class="modal-overlay" id="ticketModal" role="dialog" aria-modal="true">
     <div class="modal-box">
-      <button class="modal-close" aria-label="Cerrar">×</button>
+      <button class="modal-close" aria-label="Close">×</button>
       <div class="modal-content">
         <div class="modal-title"></div>
         <div class="modal-date"></div>
         <hr class="modal-divider">
         <div class="modal-tiers"></div>
         <div class="modal-total" id="modalTotal">TOTAL: $0 MXN</div>
-        <button class="btn-proceder" id="btnProceder" disabled>PROCEDER AL PAGO</button>
-        <p class="modal-nota">Demo · La integración de pagos estará disponible próximamente</p>
+        <button class="btn-proceder" id="btnProceder" disabled>PROCEED TO PAYMENT</button>
+        <p class="modal-nota">Demo · Payment integration coming soon</p>
       </div>
       <div class="modal-confirm" style="display:none">
-        <div class="modal-confirm-title">¡GRACIAS POR TU INTERÉS!</div>
+        <div class="modal-confirm-title">THANKS FOR YOUR INTEREST!</div>
         <div class="modal-confirm-text">
-          Este es un demo. La venta de tickets estará disponible próximamente.<br>
-          Te notificaremos en cuanto abra la venta.
+          This is a demo. Ticket sales coming soon.<br>
+          We'll let you know when they're available.
         </div>
-        <button class="btn-cerrar-modal">CERRAR</button>
+        <button class="btn-cerrar-modal">CLOSE</button>
       </div>
     </div>
   </div>
