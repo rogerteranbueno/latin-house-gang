@@ -694,13 +694,16 @@ function initKonamiEasterEgg() {
       <span class="konami-bar__label">🕹 MichaelBM · Secret Level</span>
       <button class="konami-close" id="konamiClose" aria-label="Close">✕</button>
     </div>
-    <iframe class="konami-iframe" src="" data-src="michael_bm_game.html" id="konamiFrame" allow="autoplay"></iframe>
+    <iframe class="konami-iframe" src="about:blank" data-src="michael_bm_game.html" id="konamiFrame" allow="autoplay"></iframe>
   `;
   document.body.appendChild(overlay);
 
   function openKonami() {
     const frame = document.getElementById('konamiFrame');
-    if (!frame.src || frame.src === window.location.href) frame.src = frame.dataset.src;
+    if (!frame.dataset.loaded) {
+      frame.src = frame.dataset.src;
+      frame.dataset.loaded = '1';
+    }
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
