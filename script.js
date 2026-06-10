@@ -637,45 +637,47 @@ function initScrollReveal() {
 }
 
 // ─── INIT ────────────────────────────────────────────────
-function initAudioPlayer() {
-  const widget = document.createElement('div');
-  widget.className = 'audio-widget';
-  widget.id = 'audioWidget';
-  widget.innerHTML = `
-    <div class="audio-widget__panel" id="audioPanel">
-      <div class="audio-widget__bar">
-        <span class="audio-widget__bar-label">LHG · SOUNDCLOUD</span>
-        <button class="audio-widget__close" id="audioClose" aria-label="Close player">✕</button>
-      </div>
-      <iframe
-        class="audio-widget__iframe"
-        src=""
-        data-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/latinhousegangmusic&color=%23CC2020&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"
-        allow="autoplay"
-        scrolling="no"
-      ></iframe>
-    </div>
-    <button class="audio-widget__trigger" id="audioTrigger" aria-label="Open music player">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
-      </svg>
-      <span>LISTEN</span>
-    </button>
-  `;
-  document.body.appendChild(widget);
+function initHeroSound() {
+  const btn = document.getElementById('heroSoundBtn');
+  if (!btn) return;
 
-  document.getElementById('audioTrigger').addEventListener('click', toggleAudioWidget);
-  document.getElementById('audioClose').addEventListener('click', toggleAudioWidget);
-}
+  let ytPlayer = null;
+  let isMuted = true;
+  let pendingUnmute = false;
 
-function toggleAudioWidget() {
-  const panel = document.getElementById('audioPanel');
-  const iframe = panel.querySelector('iframe');
-  const isOpen = panel.classList.toggle('open');
-  if (isOpen && !iframe.src) {
-    iframe.src = iframe.dataset.src;
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+
+  window.onYouTubeIframeAPIReady = function() {
+    ytPlayer = new YT.Player('heroVideoIframe', {
+      events: {
+        onReady: function() {
+          ytPlayer.setVolume(80);
+          if (pendingUnmute) {
+            ytPlayer.unMute();
+            pendingUnmute = false;
+          }
+        }
+      }
+    });
+  };
+
+  function setMuted(mute) {
+    isMuted = mute;
+    btn.classList.toggle('is-on', !mute);
+    btn.querySelector('.hero-sound-icon--off').style.display = mute ? '' : 'none';
+    btn.querySelector('.hero-sound-icon--on').style.display = mute ? 'none' : '';
+    if (ytPlayer && ytPlayer.isMuted !== undefined) {
+      mute ? ytPlayer.mute() : ytPlayer.unMute();
+    } else if (!mute) {
+      pendingUnmute = true;
+    }
   }
-  document.getElementById('audioTrigger').querySelector('span').textContent = isOpen ? 'CLOSE' : 'LISTEN';
+
+  btn.addEventListener('click', function() {
+    setMuted(!isMuted);
+  });
 }
 
 function init() {
@@ -692,7 +694,7 @@ function init() {
   initCalendario();
   initSubmitForm();
   initScrollReveal();
-  initAudioPlayer();
+  initHeroSound();
 
   if (document.getElementById('edFlyer')) initEventoDetalle();
 }
