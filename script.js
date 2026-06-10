@@ -680,6 +680,8 @@ function initHeroSound() {
   });
 }
 
+let openKonamiGame = null;
+
 function initKonamiEasterEgg() {
   const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let seq = [];
@@ -707,12 +709,58 @@ function initKonamiEasterEgg() {
     document.body.style.overflow = '';
   }
 
+  openKonamiGame = openKonami;
+
   document.getElementById('konamiClose').addEventListener('click', closeKonami);
   document.addEventListener('keydown', function(e) {
     if (overlay.classList.contains('open') && e.key === 'Escape') { closeKonami(); return; }
     seq.push(e.key);
     if (seq.length > KONAMI.length) seq.shift();
     if (seq.join(',') === KONAMI.join(',')) { seq = []; openKonami(); }
+  });
+}
+
+function initVinylTrigger() {
+  const el = document.createElement('div');
+  el.className = 'vinyl-trigger';
+  el.id = 'vinylTrigger';
+  el.setAttribute('aria-label', 'Secret game');
+  el.innerHTML = `
+    <div class="vinyl-disc" id="vinylDisc">
+      <div class="vinyl-grooves"></div>
+      <div class="vinyl-label-center">
+        <span class="vinyl-mb">MB</span>
+        <span class="vinyl-hole"></span>
+      </div>
+    </div>
+    <div class="vinyl-tooltip">CLICK</div>
+  `;
+  document.body.appendChild(el);
+
+  const disc = document.getElementById('vinylDisc');
+  let rotation = 0;
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener('scroll', function() {
+    const scrollY = window.scrollY;
+    const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+    const progress = Math.min(scrollY / maxScroll, 1);
+
+    // Roll down: from 12% to 88% of viewport height
+    const minTop = window.innerHeight * 0.12;
+    const maxTop = window.innerHeight * 0.88;
+    const topPx = minTop + (maxTop - minTop) * progress;
+    el.style.top = topPx + 'px';
+
+    // Spin proportional to scroll delta
+    const delta = scrollY - lastScrollY;
+    rotation += delta * 0.8;
+    disc.style.transform = 'rotate(' + rotation + 'deg)';
+    lastScrollY = scrollY;
+  });
+
+  el.addEventListener('click', function() {
+    if (openKonamiGame) openKonamiGame();
   });
 }
 
@@ -732,6 +780,7 @@ function init() {
   initScrollReveal();
   initHeroSound();
   initKonamiEasterEgg();
+  initVinylTrigger();
 
   if (document.getElementById('edFlyer')) initEventoDetalle();
 }
