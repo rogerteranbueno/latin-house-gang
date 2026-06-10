@@ -680,6 +680,42 @@ function initHeroSound() {
   });
 }
 
+function initKonamiEasterEgg() {
+  const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let seq = [];
+
+  const overlay = document.createElement('div');
+  overlay.className = 'konami-overlay';
+  overlay.id = 'konamiOverlay';
+  overlay.innerHTML = `
+    <div class="konami-bar">
+      <span class="konami-bar__label">🕹 MichaelBM · Secret Level</span>
+      <button class="konami-close" id="konamiClose" aria-label="Close">✕</button>
+    </div>
+    <iframe class="konami-iframe" src="" data-src="michael_bm_game.html" id="konamiFrame" allow="autoplay"></iframe>
+  `;
+  document.body.appendChild(overlay);
+
+  function openKonami() {
+    const frame = document.getElementById('konamiFrame');
+    if (!frame.src || frame.src === window.location.href) frame.src = frame.dataset.src;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeKonami() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('konamiClose').addEventListener('click', closeKonami);
+  document.addEventListener('keydown', function(e) {
+    if (overlay.classList.contains('open') && e.key === 'Escape') { closeKonami(); return; }
+    seq.push(e.key);
+    if (seq.length > KONAMI.length) seq.shift();
+    if (seq.join(',') === KONAMI.join(',')) { seq = []; openKonami(); }
+  });
+}
+
 function init() {
   initNavbar();
   renderReleases('releasesGridHome', 9);
@@ -695,6 +731,7 @@ function init() {
   initSubmitForm();
   initScrollReveal();
   initHeroSound();
+  initKonamiEasterEgg();
 
   if (document.getElementById('edFlyer')) initEventoDetalle();
 }
