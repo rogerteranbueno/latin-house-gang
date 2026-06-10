@@ -700,12 +700,17 @@ function initKonamiEasterEgg() {
 
   function openKonami() {
     const frame = document.getElementById('konamiFrame');
-    if (!frame.dataset.loaded) {
-      frame.src = frame.dataset.src;
-      frame.dataset.loaded = '1';
-    }
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    if (!frame.dataset.loaded) {
+      frame.dataset.loaded = '1';
+      fetch('michael_bm_game.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          const blob = new Blob([html], { type: 'text/html' });
+          frame.src = URL.createObjectURL(blob);
+        });
+    }
   }
   function closeKonami() {
     overlay.classList.remove('open');
