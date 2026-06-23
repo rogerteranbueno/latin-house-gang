@@ -35,7 +35,7 @@ const artists = [
     apple:     "https://music.apple.com/mx/artist/boltron/1535833423" },
   { name: "Gama",           aliases: [],
     instagram: "https://www.instagram.com/gamamusicmx/",
-    spotify:   "https://open.spotify.com/intl-es/artist/4z5hE5cqCfTsCZ60IVAgRC",
+    spotify:   "https://open.spotify.com/intl-es/artist/3dz2bNMWfMiLkiHTIrQVmY",
     apple:     "https://music.apple.com/mx/artist/gama/193501778" },
   { name: "House Music Bro",aliases: [],
     instagram: "https://www.instagram.com/housemusicbro/",
@@ -333,7 +333,16 @@ function renderBlog(containerId) {
 function renderEventos(containerId, limit) {
   const container = document.getElementById(containerId);
   if (!container) return;
-  const list = limit ? eventos.slice(0, limit) : eventos;
+  const now = new Date();
+  const upcoming = eventos.filter(e => {
+    const f = parseFecha(e.fecha);
+    return new Date(f.year, f.month, f.day) >= new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  });
+  if (upcoming.length === 0) {
+    container.innerHTML = '<p class="no-events-msg">No upcoming shows — follow us to stay updated.</p>';
+    return;
+  }
+  const list = limit ? upcoming.slice(0, limit) : upcoming;
   container.innerHTML = list.map(e => {
     const f = parseFecha(e.fecha);
     const soldOut = e.status === 'sold-out';
@@ -772,6 +781,68 @@ function initVinylTrigger() {
   });
 }
 
+// ─── BOTTOM PLAYER ──────────────────────────────────────
+function initBottomPlayer() {
+  const r = releases[0];
+  if (!r) return;
+  const spBtn = r.spotifyUrl ? `<a href="${r.spotifyUrl}" target="_blank" rel="noopener" class="bp-btn bp-btn-spotify">${SPOTIFY_SVG}<span class="bp-btn-text">Spotify</span></a>` : '';
+  const apBtn = r.appleUrl   ? `<a href="${r.appleUrl}"  target="_blank" rel="noopener" class="bp-btn bp-btn-apple">${APPLE_SVG}<span class="bp-btn-text">Apple</span></a>` : '';
+  const bpBtn = r.beatportUrl ? `<a href="${r.beatportUrl}" target="_blank" rel="noopener" class="bp-btn bp-btn-beatport"><span class="bp-btn-text">Beatport</span></a>` : '';
+  const coverHtml = r.coverUrl
+    ? `<img src="${r.coverUrl}" alt="${r.title}" loading="lazy">`
+    : `<div style="width:100%;height:100%;background:#333;display:flex;align-items:center;justify-content:center;font-size:16px;color:#666">♪</div>`;
+
+  const el = document.createElement('div');
+  el.className = 'bottom-player';
+  el.id = 'bottomPlayer';
+  el.innerHTML = `
+    <div class="bp-cover">${coverHtml}</div>
+    <div class="bp-track">
+      <div class="bp-label">${r.catalog} · LATEST RELEASE</div>
+      <div class="bp-title">${r.title}</div>
+      <div class="bp-artist">${r.artist}</div>
+    </div>
+    <div class="bp-actions">${spBtn}${apBtn}${bpBtn}</div>
+    <button class="bp-dismiss" id="bpDismiss" aria-label="Dismiss">×</button>`;
+  document.body.appendChild(el);
+
+  document.getElementById('bpDismiss').addEventListener('click', () => {
+    el.style.transition = 'transform 0.35s ease';
+    el.style.transform = 'translateY(100%)';
+    const mbn = document.getElementById('mobileBottomNav');
+    if (mbn) { mbn.classList.remove('player-active'); }
+    document.body.classList.remove('player-on');
+  });
+
+  setTimeout(() => {
+    el.classList.add('bp-visible');
+    document.body.classList.add('player-on');
+    const mbn = document.getElementById('mobileBottomNav');
+    if (mbn) mbn.classList.add('player-active');
+  }, 1600);
+}
+
+// ─── MOBILE BOTTOM NAV ──────────────────────────────────
+function initMobileBottomNav() {
+  const pages = [
+    { href: 'index.html',   label: 'Music',  svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 8l8 4-8 4V8z" fill="currentColor" stroke="none"/></svg>' },
+    { href: 'eventos.html', label: 'Events', svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>' },
+    { href: 'blog.html',    label: 'Journal',svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>' },
+    { href: 'merch.html',   label: 'Shop',   svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>' },
+    { href: 'submit.html',  label: 'Demo',   svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>' }
+  ];
+  const current = window.location.pathname.split('/').pop() || 'index.html';
+  const nav = document.createElement('nav');
+  nav.className = 'mobile-bottom-nav';
+  nav.id = 'mobileBottomNav';
+  nav.setAttribute('aria-label', 'Main navigation');
+  nav.innerHTML = pages.map(p => `
+    <a href="${p.href}" class="mbn-item${(current === p.href || (current === '' && p.href === 'index.html')) ? ' active' : ''}">
+      ${p.svg}<span>${p.label}</span>
+    </a>`).join('');
+  document.body.appendChild(nav);
+}
+
 function init() {
   initNavbar();
   renderReleases('releasesGridHome', 9);
@@ -789,6 +860,8 @@ function init() {
   initHeroSound();
   initKonamiEasterEgg();
   initVinylTrigger();
+  initMobileBottomNav();
+  initBottomPlayer();
 
   if (document.getElementById('edFlyer')) initEventoDetalle();
 }

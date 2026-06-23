@@ -363,6 +363,36 @@ select{
 .synth-knobs{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .knob-group{display:flex;flex-direction:column;gap:6px;}
 .knob-lbl{font-size:10px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;}
+
+/* ── STUDIO IMPROVEMENTS ── */
+.studio-hint{font-size:10px;color:var(--muted);letter-spacing:1.5px;line-height:1.6;margin-bottom:12px;padding:8px 10px;background:rgba(136,0,255,0.06);border-left:2px solid var(--border);border-radius:0 6px 6px 0;}
+.studio-hint b{color:#aa88cc;}
+.studio-section{margin-bottom:20px;}
+.studio-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.studio-section-lbl{font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;}
+.transport{gap:10px;margin-bottom:10px;}
+.bpm-group{gap:10px;}
+.bpm-badge{background:rgba(255,110,199,0.1);border:1px solid rgba(255,110,199,0.3);padding:3px 8px;border-radius:4px;font-size:9px;color:var(--pink);letter-spacing:2px;}
+/* REC button */
+.rec-btn{
+  display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;
+  background:rgba(255,51,102,0.15);border:1.5px solid var(--red);
+  color:var(--red);font-family:inherit;font-size:11px;font-weight:bold;
+  letter-spacing:2px;text-transform:uppercase;border-radius:8px;cursor:pointer;
+  transition:all .15s;
+}
+.rec-btn:hover{background:rgba(255,51,102,0.3);}
+.rec-btn.recording{background:var(--red);color:#fff;animation:recPulse 1s ease-in-out infinite;}
+@keyframes recPulse{0%,100%{box-shadow:0 0 6px var(--red);}50%{box-shadow:0 0 18px var(--red),0 0 30px rgba(255,51,102,.4);}}
+.rec-btn:disabled{opacity:0.4;cursor:not-allowed;animation:none;}
+.rec-status{font-size:9px;color:var(--red);letter-spacing:2px;text-align:center;min-height:14px;margin-top:4px;}
+/* Pads improved */
+.pads-grid{gap:10px;margin-bottom:16px;}
+.pad{border-radius:10px;font-size:18px;gap:2px;}
+/* Steps improved */
+.step{width:26px;height:30px;border-radius:4px;}
+.track-row{margin-bottom:8px;}
+.track-lbl{width:52px;font-size:10px;}
 </style>
 </head>
 <body>
@@ -507,7 +537,7 @@ select{
   <div class="studio-nav">
     <button class="studio-back" id="studioBack">← Volver</button>
     <div class="studio-title">Studio</div>
-    <div style="width:60px"></div>
+    <button class="rec-btn" id="recBtn">⬤ REC</button>
   </div>
 
   <div class="studio-tabs">
@@ -519,6 +549,7 @@ select{
 
     <!-- DRUMS TAB -->
     <div id="tabDrums">
+      <p class="studio-hint">Tap <b>▶ Play</b> to start the loop. Click any <b>step</b> to toggle it on/off. Drag the <b>BPM</b> slider to adjust tempo. Load a <b>preset</b> groove to get started fast.</p>
       <div class="transport">
         <div class="bpm-group">
           <div>
@@ -534,10 +565,12 @@ select{
 
       <div class="dm-label">◈ Secuenciador 16 pasos</div>
       <div id="drumGrid"></div>
+      <p class="rec-status" id="recStatus"></p>
     </div>
 
     <!-- SYNTH TAB -->
     <div id="tabSynth" class="hidden">
+      <p class="studio-hint">Tap the <b>pads</b> to play notes. <b>Waveform</b> + <b>Octave</b> change the sound character. <b>Filter</b> cuts high frequencies (lower = darker). <b>Decay</b> sets note length. <b>Reverb</b> adds space and depth.</p>
       <div class="dm-label" style="margin-bottom:12px;">◈ Pads de melodía</div>
       <div class="pads-grid" id="synthPads"></div>
       <div class="dm-label" style="margin-bottom:12px;">◈ Parámetros del Synth</div>
@@ -662,7 +695,17 @@ const Audio = (() => {
   }
   function setWave(w){sWave=w;} function setFilter(f){sFilt=f;} function setDecay(d){sDec=d;}
   function setRev(r){sRev=r/100;} function setOct(o){sOct=parseFloat(o);} function setVol(v){sVol=v;}
-  return{init,resume,t,kick,snare,hat,perc,synth,setWave,setFilter,setDecay,setRev,setOct,setVol};
+  let streamDest=null;
+  function getStream(){
+    if(!ctx) return null;
+    if(!streamDest){
+      streamDest=ctx.createMediaStreamDestination();
+      dry.connect(streamDest);
+      wet.connect(streamDest);
+    }
+    return streamDest.stream;
+  }
+  return{init,resume,t,kick,snare,hat,perc,synth,setWave,setFilter,setDecay,setRev,setOct,setVol,getStream};
 })();
 
 /* ═══════════════════════════════════════════════
@@ -1152,6 +1195,36 @@ window.addEventListener('seqstep',e=>{
   const s=e.detail.s;
   document.querySelectorAll('.step').forEach(b=>{b.classList.remove('cur');if(parseInt(b.dataset.s)===s)b.classList.add('cur');});
 });
+
+// REC BEAT
+let recorder=null,recChunks=[];
+function recordBeat(){
+  const btn=document.getElementById('recBtn');
+  const status=document.getElementById('recStatus');
+  if(recorder&&recorder.state==='recording'){recorder.stop();return;}
+  Audio.init();Audio.resume();
+  const stream=Audio.getStream();
+  if(!stream){status.textContent='Start audio first';return;}
+  recChunks=[];
+  recorder=new MediaRecorder(stream);
+  recorder.ondataavailable=e=>{if(e.data.size>0)recChunks.push(e.data);};
+  recorder.onstop=()=>{
+    const blob=new Blob(recChunks,{type:'audio/webm'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download='lhg-beat.webm';a.click();
+    URL.revokeObjectURL(url);
+    btn.textContent='⬤ REC';btn.classList.remove('recording');
+    status.textContent='Beat saved ↓';
+    setTimeout(()=>{status.textContent='';},3000);
+  };
+  recorder.start();
+  btn.textContent='■ STOP';btn.classList.add('recording');
+  const bpm=parseInt(document.getElementById('bdsp').textContent)||124;
+  const ms=(60000/bpm)*4*8;
+  status.textContent='Recording '+Math.round(ms/1000)+'s…';
+  setTimeout(()=>{if(recorder&&recorder.state==='recording')recorder.stop();},ms);
+}
+document.getElementById('recBtn').addEventListener('click',recordBeat);
 
 /* ═══════════════════════════════════════════════
    KEYBOARD

@@ -3083,3 +3083,207 @@ img { display: block; max-width: 100%; }
   .vinyl-disc { width: 48px; height: 48px; }
   .vinyl-tooltip { display: none; }
 }
+
+/* ════════════════════════════════════════════
+   APP CHROME — BOTTOM PLAYER (Spotify-style)
+   ════════════════════════════════════════════ */
+.bottom-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: rgba(14,14,14,0.97);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  z-index: 8000;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.bottom-player.bp-visible { transform: translateY(0); }
+
+.bp-cover {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #222;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+}
+.bp-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.bp-track {
+  flex: 1;
+  min-width: 0;
+}
+.bp-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.bp-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+.bp-artist {
+  font-size: 11px;
+  color: rgba(255,255,255,0.48);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.bp-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.bp-btn {
+  height: 32px;
+  padding: 0 13px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.bp-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
+.bp-btn:hover { transform: scale(1.05); }
+.bp-btn:active { transform: scale(0.96); }
+.bp-btn-spotify  { background: rgba(29,185,84,0.22); }
+.bp-btn-spotify:hover  { background: rgba(29,185,84,0.45); }
+.bp-btn-apple    { background: rgba(255,255,255,0.09); }
+.bp-btn-apple:hover    { background: rgba(255,255,255,0.18); }
+.bp-btn-beatport { background: rgba(204,32,32,0.2); }
+.bp-btn-beatport:hover { background: rgba(204,32,32,0.4); }
+
+.bp-dismiss {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.22);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.bp-dismiss:hover { color: rgba(255,255,255,0.7); }
+
+/* ─── MOBILE BOTTOM NAV ─────────────────────── */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 58px;
+  background: rgba(10,10,10,0.97);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: none;
+  align-items: center;
+  z-index: 7999;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  transition: bottom 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.mobile-bottom-nav.player-active { bottom: 64px; }
+
+.mbn-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 7px 4px;
+  color: rgba(255,255,255,0.32);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.mbn-item svg { width: 19px; height: 19px; }
+.mbn-item:hover { color: rgba(255,255,255,0.65); }
+.mbn-item.active { color: #fff; }
+
+/* ─── BODY PADDING FOR APP CHROME ─── */
+@media (max-width: 768px) {
+  .mobile-bottom-nav { display: flex; }
+  .bottom-player { bottom: 58px; height: 64px; }
+  /* shift vinyl trigger above chrome */
+  .vinyl-trigger { bottom: 74px; top: auto !important; }
+  body { padding-bottom: 58px; }
+  body.player-on { padding-bottom: 122px; }
+  /* shrink mobile player buttons to icon-only */
+  .bp-btn-text { display: none; }
+  .bp-label { display: none; }
+  .bp-btn { padding: 0 9px; }
+}
+@media (min-width: 769px) {
+  body.player-on { padding-bottom: 72px; }
+}
+
+/* ─── NO EVENTS MESSAGE ─── */
+.no-events-msg {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+  padding: 32px 0;
+  text-align: center;
+}
+
+/* ─── RELEASE CARD — Spotify-style play button ─── */
+.release-cover-wrap::after {
+  content: '▶';
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1DB954;
+  color: #000;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  line-height: 1;
+  padding-left: 2px;
+}
+.release-card:hover .release-cover-wrap::after {
+  opacity: 1;
+  transform: translateY(0);
+}
