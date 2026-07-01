@@ -645,48 +645,84 @@ function initScrollReveal() {
   els.forEach(el => observer.observe(el));
 }
 
-// ─── INIT ────────────────────────────────────────────────
-function initHeroSound() {
-  const btn = document.getElementById('heroSoundBtn');
-  if (!btn) return;
+// ─── HERO CANVAS ANIMATION ──────────────────────────────
+function initHeroCanvas() {
+  const canvas = document.getElementById('heroBg');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, t = 0;
+  const particles = [];
 
-  let ytPlayer = null;
-  let isMuted = true;
-  let pendingUnmute = false;
-
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(tag);
-
-  window.onYouTubeIframeAPIReady = function() {
-    ytPlayer = new YT.Player('heroVideoIframe', {
-      events: {
-        onReady: function() {
-          ytPlayer.setVolume(80);
-          if (pendingUnmute) {
-            ytPlayer.unMute();
-            pendingUnmute = false;
-          }
-        }
-      }
-    });
-  };
-
-  function setMuted(mute) {
-    isMuted = mute;
-    btn.classList.toggle('is-on', !mute);
-    btn.querySelector('.hero-sound-icon--off').style.display = mute ? '' : 'none';
-    btn.querySelector('.hero-sound-icon--on').style.display = mute ? 'none' : '';
-    if (ytPlayer && ytPlayer.isMuted !== undefined) {
-      mute ? ytPlayer.mute() : ytPlayer.unMute();
-    } else if (!mute) {
-      pendingUnmute = true;
-    }
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
   }
 
-  btn.addEventListener('click', function() {
-    setMuted(!isMuted);
-  });
+  function makeParticle() {
+    return {
+      x: Math.random() * W,
+      y: H + 10,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: -(Math.random() * 0.5 + 0.15),
+      r: Math.random() * 1.5 + 0.3,
+      alpha: Math.random() * 0.35 + 0.05,
+      green: Math.random() < 0.22
+    };
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (var i = 0; i < 100; i++) {
+    var p = makeParticle();
+    p.y = Math.random() * H;
+    particles.push(p);
+  }
+
+  (function draw() {
+    ctx.fillStyle = 'rgba(5,5,5,0.13)';
+    ctx.fillRect(0, 0, W, H);
+    t += 0.007;
+
+    // Pulsing gradient orbs
+    [
+      { fx: 0.18 + Math.sin(t * 0.6) * 0.07, fy: 0.45 + Math.cos(t * 0.5) * 0.1,  rMul: 0.6,  rgb: '29,185,84',  a: 0.055 },
+      { fx: 0.82 + Math.cos(t * 0.55) * 0.06, fy: 0.28 + Math.sin(t * 0.7) * 0.1, rMul: 0.5,  rgb: '200,40,40',  a: 0.04  },
+      { fx: 0.55 + Math.sin(t * 0.35) * 0.09, fy: 0.82 + Math.cos(t * 0.8) * 0.07, rMul: 0.45, rgb: '50,70,200', a: 0.03  }
+    ].forEach(function(o) {
+      var ox = W * o.fx, oy = H * o.fy, or = Math.max(W, H) * o.rMul;
+      var g = ctx.createRadialGradient(ox, oy, 0, ox, oy, or);
+      g.addColorStop(0, 'rgba(' + o.rgb + ',' + (o.a + Math.sin(t) * 0.015) + ')');
+      g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    });
+
+    // Floating particles
+    for (var i = particles.length - 1; i >= 0; i--) {
+      var p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -4) { particles.splice(i, 1); particles.push(makeParticle()); }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.green
+        ? 'rgba(29,185,84,' + p.alpha + ')'
+        : 'rgba(255,255,255,' + p.alpha + ')';
+      ctx.fill();
+    }
+
+    // Subtle waveform
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(29,185,84,0.1)';
+    ctx.lineWidth = 1;
+    for (var x = 0; x <= W; x += 2) {
+      var y = H * 0.88 + Math.sin(x * 0.015 + t * 2.5) * 10 + Math.sin(x * 0.04 + t * 4) * 5;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    requestAnimationFrame(draw);
+  })();
 }
 
 let openKonamiGame = null;
@@ -857,7 +893,7 @@ function init() {
   initCalendario();
   initSubmitForm();
   initScrollReveal();
-  initHeroSound();
+  initHeroCanvas();
   initKonamiEasterEgg();
   initVinylTrigger();
   initMobileBottomNav();
