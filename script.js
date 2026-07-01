@@ -302,12 +302,12 @@ function renderSets(containerId) {
 
 // ─── BLOG GRID ──────────────────────────────────────────
 const blogPosts = [
-  { category: "RELEASE", date: "June 2025", title: "PASKMAN DROPS 'CIEMPIÉS' — LHG #027", excerpt: "Paskman makes his label debut with a track that captures the raw energy of the Latin underground.", color: "#E8650A" },
-  { category: "RELEASE", date: "May 2025", title: "BAUTISTA — 'LOVER' OUT NOW — LHG #025", excerpt: "Melodic deep house with its own identity. Bautista's second release on the label confirms his sound.", color: "#7AB3D4" },
-  { category: "EVENT", date: "April 2025", title: "RECAP: LHG SHOWCASE TOLUCA", excerpt: "400+ people. One night that defined the label's sound. Photos, video, and what's next.", color: "#CC2020" },
-  { category: "MIX", date: "March 2025", title: "LHG PODCAST 001 · GAMA", excerpt: "One hour, no compromises. Gama opens the label's exclusive mix series.", color: "#1A6B6B" },
-  { category: "NEWS", date: "February 2025", title: "LATIN HOUSE GANG VOL.4 — OUT NOW", excerpt: "The fourth installment of the label's flagship compilation. 10 tracks, 8 artists, one sound.", color: "#CC2020" },
-  { category: "EVENT", date: "January 2025", title: "FIRST CDMX DATE — JULY 26 · EL BUNKER", excerpt: "Latin House Gang hits Mexico City. Minow and Gama perform new material at El Bunker.", color: "#5C2D8A" }
+  { category: "RELEASE", date: "June 2026",     title: "CELE ARRABAL — 'BRITNEY' OUT NOW — LHG #029",          excerpt: "The newest LHG record lands with attitude. Cele Arrabal's most direct statement yet — and the room knows it.", color: "#E8650A" },
+  { category: "RELEASE", date: "May 2026",      title: "BARRANQUILLA — JAYIE × MICHAELBM × VIKA — LHG #028",  excerpt: "A collab that crosses borders and cultures. Barranquilla is the kind of record you play when the room needs to move.", color: "#7AB3D4" },
+  { category: "RELEASE", date: "April 2026",    title: "LATIN HOUSE GANG VOL.4 — OUT NOW — LHG #027",          excerpt: "The fourth installment of the label's flagship compilation. 10 tracks, 8 artists, one sound.", color: "#CC2020" },
+  { category: "RELEASE", date: "March 2026",    title: "PASKMAN DROPS 'CIEMPIÉS' — LHG #026",                  excerpt: "Paskman makes his label debut with a track that captures the raw energy of the Latin underground.", color: "#1A6B6B" },
+  { category: "RELEASE", date: "February 2026", title: "BAUTISTA — 'LOVER' OUT NOW — LHG #025",                excerpt: "Melodic deep house with its own identity. Bautista's second release on the label confirms his sound.", color: "#5C2D8A" },
+  { category: "MIX",     date: "January 2026",  title: "LHG PODCAST 001 · GAMA",                               excerpt: "One hour, no compromises. Gama opens the label's exclusive mix series with a set built for the late hours.", color: "#CC2020" }
 ];
 
 function renderBlog(containerId) {
@@ -324,7 +324,7 @@ function renderBlog(containerId) {
       </div>
       <div class="blog-title">${p.title}</div>
       <div class="blog-excerpt">${p.excerpt}</div>
-      <span class="blog-read-more">LEER MÁS →</span>
+      <span class="blog-read-more">READ MORE →</span>
     </div>
   `).join('');
 }
