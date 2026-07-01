@@ -231,7 +231,7 @@ function renderReleases(containerId, limit) {
   const container = document.getElementById(containerId);
   if (!container) return;
   const list = limit ? releases.slice(0, limit) : releases;
-  container.innerHTML = list.map(r => {
+  container.innerHTML = list.map((r, i) => {
     const coverHtml = r.coverUrl
       ? `<img src="${r.coverUrl}" alt="${r.title}" loading="lazy" class="release-cover-img">`
       : `<div class="release-cover-placeholder" style="background-color:${r.color || '#333'}">
@@ -262,7 +262,7 @@ function renderReleases(containerId, limit) {
           </div>
         </div>
         <div class="release-info">
-          <div class="release-catalog">${r.catalog}</div>
+          <div class="release-catalog">${r.catalog}${i < 2 ? '<span class="release-badge-new">NEW</span>' : ''}</div>
           <div class="release-title">${r.title}</div>
           <div class="release-artist">${r.artist}</div>
         </div>

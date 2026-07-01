@@ -3415,3 +3415,150 @@ img { display: block; max-width: 100%; }
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ═══════════════════════════════════════════
+   SPOTIFY APP FEEL — REFINEMENTS
+   ═══════════════════════════════════════════ */
+
+/* 1. Antialiasing — makes text render crisp on dark backgrounds */
+.dark-body,
+.dark-body * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. Spotify's exact dark bg (was #0A0A0A) */
+.dark-body { background: #121212; }
+.navbar--dark { background: #121212; }
+.nav-mobile-menu--dark { background: #121212; }
+.sp-stream-section { background: #121212; }
+
+/* 3. Navbar — elevated blur on scroll */
+.navbar--dark.scrolled {
+  background: rgba(18,18,18,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: rgba(255,255,255,0.07);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+/* 4. Nav active link — green underline indicator */
+.navbar--dark .nav-links a.active {
+  color: #fff;
+  position: relative;
+}
+.navbar--dark .nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #1DB954;
+  border-radius: 1px;
+}
+
+/* 5. Custom scrollbar — thin, Spotify-style */
+.dark-body ::-webkit-scrollbar { width: 6px; }
+.dark-body ::-webkit-scrollbar-track { background: transparent; }
+.dark-body ::-webkit-scrollbar-thumb { background: #535353; border-radius: 3px; }
+.dark-body ::-webkit-scrollbar-thumb:hover { background: #7a7a7a; }
+
+/* 6. Release cards — Spotify card hover lift */
+.releases-section--dark .release-card {
+  border-radius: 8px;
+  padding: 8px 8px 12px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  margin: -8px -8px -12px;
+}
+.releases-section--dark .release-card:hover {
+  background: #1a1a1a;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+}
+.releases-section--dark .release-cover-wrap {
+  border-radius: 4px;
+  overflow: hidden;
+}
+.releases-section--dark .release-info {
+  padding-top: 14px;
+}
+.releases-section--dark .release-artist {
+  color: #b3b3b3;
+}
+
+/* 7. NEW badge on latest releases */
+.release-badge-new {
+  display: inline-block;
+  background: #1DB954;
+  color: #000;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-left: 6px;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+/* 8. Bottom player — progress bar at top */
+.bottom-player {
+  background: #181818;
+  border-top-color: rgba(255,255,255,0.06);
+}
+.bottom-player::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 38%;
+  height: 2px;
+  background: linear-gradient(to right, #1DB954, #1ed760);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.bottom-player.bp-visible::before { opacity: 1; }
+
+/* 9. Blog cards — Spotify dark card style */
+.dark-body .blog-card {
+  background: #181818;
+  border-radius: 6px;
+  padding: 0 0 16px;
+  overflow: hidden;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.dark-body .blog-card:hover {
+  background: #282828;
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+.dark-body .blog-cover {
+  border-radius: 0;
+  margin-bottom: 4px;
+}
+.dark-body .blog-meta,
+.dark-body .blog-title,
+.dark-body .blog-excerpt,
+.dark-body .blog-read-more {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.dark-body .blog-read-more { margin-top: 4px; }
+
+/* 10. Sets — rounded iframes, dark card feel */
+.dark-body .set-card {
+  background: #181818;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.dark-body .set-card:hover {
+  background: #282828;
+  transform: translateY(-3px);
+}
+.dark-body .set-info { padding: 12px 16px 16px; }
+.dark-body .set-embed { border-radius: 0; }
+.dark-body .set-embed iframe { border-radius: 0; }
