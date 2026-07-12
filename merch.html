@@ -99,85 +99,49 @@
       <p class="drops-section__desc drops-section__desc--dark">Essential pieces with label DNA. Limited sizes — one run only.</p>
     </div>
 
-    <div class="drops-grid container">
+    <div class="merch-products-grid container">
 
-      <div class="drop-card">
-        <div class="drop-card__image">
-          <div class="drop-card__placeholder">
-            <div class="drop-card__ph-inner">
-              <span class="drop-card__ph-mark">LHG</span>
-              <span class="drop-card__ph-item">TEE</span>
-            </div>
+      <!-- CAP WHITE EDITION -->
+      <div class="merch-product-card">
+        <div class="merch-carousel" id="carousel-white">
+          <div class="merch-carousel-track" id="track-white">
+            <div class="merch-slide"><img src="/merch/cap-white-01.jpg" alt="LHG Cap White" loading="lazy"></div>
+            <div class="merch-slide"><img src="/merch/cap-white-02.jpg" alt="LHG Cap White" loading="lazy"></div>
+            <div class="merch-slide"><img src="/merch/cap-white-03.jpg" alt="LHG Cap White" loading="lazy"></div>
           </div>
-          <div class="drop-card__overlay">
-            <span class="drop-card__overlay-text">COMING SOON</span>
+          <div class="merch-carousel-dots" id="dots-white">
+            <span class="merch-dot active"></span>
+            <span class="merch-dot"></span>
+            <span class="merch-dot"></span>
           </div>
-          <span class="drop-card__badge">LIMITED</span>
+          <span class="merch-badge">LIMITED</span>
         </div>
-        <div class="drop-card__info">
-          <p class="drop-card__ref">LHG-001-A</p>
-          <p class="drop-card__name">LOGO TEE</p>
-          <p class="drop-card__price">— MXN</p>
+        <div class="merch-product-info">
+          <div class="merch-product-ref">LHG-001-C · DROP 001</div>
+          <div class="merch-product-name">6-PANEL CAP</div>
+          <div class="merch-product-variant">White Edition</div>
+          <div class="merch-product-price">COMING SOON</div>
         </div>
       </div>
 
-      <div class="drop-card">
-        <div class="drop-card__image">
-          <div class="drop-card__placeholder drop-card__placeholder--dark">
-            <div class="drop-card__ph-inner">
-              <span class="drop-card__ph-mark">LHG</span>
-              <span class="drop-card__ph-item">HOODIE</span>
-            </div>
+      <!-- CAP BLACK EDITION -->
+      <div class="merch-product-card">
+        <div class="merch-carousel" id="carousel-black">
+          <div class="merch-carousel-track" id="track-black">
+            <div class="merch-slide"><img src="/merch/cap-black-01.jpg" alt="LHG Cap Black" loading="lazy"></div>
+            <div class="merch-slide"><img src="/merch/cap-black-02.jpg" alt="LHG Cap Black" loading="lazy"></div>
           </div>
-          <div class="drop-card__overlay">
-            <span class="drop-card__overlay-text">COMING SOON</span>
+          <div class="merch-carousel-dots" id="dots-black">
+            <span class="merch-dot active"></span>
+            <span class="merch-dot"></span>
           </div>
-          <span class="drop-card__badge">LIMITED</span>
+          <span class="merch-badge">LIMITED</span>
         </div>
-        <div class="drop-card__info">
-          <p class="drop-card__ref">LHG-001-B</p>
-          <p class="drop-card__name">GANG HOODIE</p>
-          <p class="drop-card__price">— MXN</p>
-        </div>
-      </div>
-
-      <div class="drop-card">
-        <div class="drop-card__image">
-          <div class="drop-card__placeholder">
-            <div class="drop-card__ph-inner">
-              <span class="drop-card__ph-mark">LHG</span>
-              <span class="drop-card__ph-item">CAP</span>
-            </div>
-          </div>
-          <div class="drop-card__overlay">
-            <span class="drop-card__overlay-text">COMING SOON</span>
-          </div>
-          <span class="drop-card__badge">LIMITED</span>
-        </div>
-        <div class="drop-card__info">
-          <p class="drop-card__ref">LHG-001-C</p>
-          <p class="drop-card__name">6-PANEL CAP</p>
-          <p class="drop-card__price">— MXN</p>
-        </div>
-      </div>
-
-      <div class="drop-card">
-        <div class="drop-card__image">
-          <div class="drop-card__placeholder drop-card__placeholder--dark">
-            <div class="drop-card__ph-inner">
-              <span class="drop-card__ph-mark">LHG</span>
-              <span class="drop-card__ph-item">L/S</span>
-            </div>
-          </div>
-          <div class="drop-card__overlay">
-            <span class="drop-card__overlay-text">COMING SOON</span>
-          </div>
-          <span class="drop-card__badge">LIMITED</span>
-        </div>
-        <div class="drop-card__info">
-          <p class="drop-card__ref">LHG-001-D</p>
-          <p class="drop-card__name">LONGSLEEVE</p>
-          <p class="drop-card__price">— MXN</p>
+        <div class="merch-product-info">
+          <div class="merch-product-ref">LHG-001-C · DROP 001</div>
+          <div class="merch-product-name">6-PANEL CAP</div>
+          <div class="merch-product-variant">Black Edition</div>
+          <div class="merch-product-price">COMING SOON</div>
         </div>
       </div>
 
@@ -237,7 +201,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=13"></script>
+  <script src="script.js?v=14"></script>
   <script>
     function handleNotify() {
       const input = document.getElementById('notifyEmail');
@@ -251,6 +215,57 @@
     document.getElementById('notifyEmail').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') handleNotify();
     });
+
+    // ─── MERCH CAROUSEL ─────────────────────────────────
+    function initCarousel(trackId, dotsId) {
+      const track = document.getElementById(trackId);
+      const dotsEl = document.getElementById(dotsId);
+      if (!track || !dotsEl) return;
+
+      const slides = track.querySelectorAll('.merch-slide');
+      const dots = dotsEl.querySelectorAll('.merch-dot');
+      const total = slides.length;
+      let current = 0;
+      let startX = 0;
+      let isDragging = false;
+
+      function goTo(n) {
+        current = (n + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      // Touch swipe
+      track.parentElement.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      }, { passive: true });
+
+      track.parentElement.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+        isDragging = false;
+      }, { passive: true });
+
+      // Mouse drag (desktop)
+      track.parentElement.addEventListener('mousedown', function(e) {
+        startX = e.clientX;
+        isDragging = true;
+      });
+      track.parentElement.addEventListener('mouseup', function(e) {
+        if (!isDragging) return;
+        const diff = startX - e.clientX;
+        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+        isDragging = false;
+      });
+
+      // Dot clicks
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+    }
+
+    initCarousel('track-white', 'dots-white');
+    initCarousel('track-black', 'dots-black');
   </script>
 </body>
 </html>
