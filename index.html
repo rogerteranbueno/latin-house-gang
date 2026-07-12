@@ -184,8 +184,14 @@
         <a href="merch.html" class="merch-teaser__cta">DROP 001 — COMING SOON →</a>
       </div>
       <div class="merch-teaser__visual">
-        <div class="merch-teaser__placeholder">
-          <span class="merch-teaser__placeholder-text">LHG</span>
+        <div class="merch-teaser-slider" id="merchTeaserSlider">
+          <div class="merch-teaser-track" id="merchTeaserTrack">
+            <img src="/merch/cap-white-01.jpg" alt="LHG Cap" loading="lazy">
+            <img src="/merch/cap-black-01.jpg" alt="LHG Cap" loading="lazy">
+            <img src="/merch/cap-white-02.jpg" alt="LHG Cap" loading="lazy">
+            <img src="/merch/cap-black-02.jpg" alt="LHG Cap" loading="lazy">
+            <img src="/merch/cap-white-03.jpg" alt="LHG Cap" loading="lazy">
+          </div>
         </div>
       </div>
     </div>
@@ -257,6 +263,18 @@
     </div>
   </div>
 
-  <script src="script.js?v=14"></script>
+  <script src="script.js?v=15"></script>
+  <script>
+    (function() {
+      const track = document.getElementById('merchTeaserTrack');
+      if (!track) return;
+      const total = track.children.length;
+      let current = 0;
+      setInterval(function() {
+        current = (current + 1) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      }, 2800);
+    })();
+  </script>
 </body>
 </html>
