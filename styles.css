@@ -2719,7 +2719,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 1024px) {
   .label-identity__inner { grid-template-columns: 1fr; gap: 48px; }
   .merch-teaser__inner { grid-template-columns: 1fr; gap: 48px; }
-  .merch-teaser__visual { max-height: 280px; }
+  .merch-teaser__visual { height: 360px; aspect-ratio: unset; width: 100%; }
 }
 @media (max-width: 768px) {
   .label-identity { padding: 60px 0; }
@@ -2829,6 +2829,12 @@ img { display: block; max-width: 100%; }
   .releases-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Release overlay — always visible on touch devices (no hover available) */
+@media (hover: none) and (pointer: coarse) {
+  .release-cover-overlay { opacity: 1; }
+  .release-card:hover .release-cover-overlay { opacity: 1; }
+}
+
 /* Sets section — tighter padding on mobile */
 @media (max-width: 768px) {
   .sets-section { padding: 60px 0; }
@@ -2845,8 +2851,9 @@ img { display: block; max-width: 100%; }
 
 /* Merch teaser */
 @media (max-width: 768px) {
-  .merch-teaser__inner { padding: 0 20px; }
-  .merch-teaser__visual { display: none; }
+  .merch-teaser { padding: 56px 0; }
+  .merch-teaser__inner { padding: 0 20px; gap: 32px; }
+  .merch-teaser__visual { height: 260px; aspect-ratio: unset; width: 100%; order: -1; }
   .merch-teaser__title { font-size: 56px; }
 }
 
@@ -3379,6 +3386,11 @@ img { display: block; max-width: 100%; }
     gap: 32px;
   }
   .sp-info-title { font-size: 48px; }
+  .sp-stream-section { padding: 56px 0 64px; }
+}
+@media (max-width: 480px) {
+  .sp-info-title { font-size: 36px; }
+  .sp-listeners-num { font-size: 24px; }
 }
 
 /* ─── NO EVENTS MESSAGE ─── */
